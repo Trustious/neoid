@@ -19,7 +19,8 @@ module Neoid
         relationship = Neography::Relationship.create(
           options[:type].is_a?(Proc) ? options[:type].call(self) : options[:type],
           start_node.neo_node,
-          end_node.neo_node
+          end_node.neo_node,
+          self.to_neo
         )
         
         Neoid.db.add_relationship_to_index(self.class.neo_index_name, :ar_id, self.id, relationship)
